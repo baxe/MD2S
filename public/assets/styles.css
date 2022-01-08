@@ -46,7 +46,7 @@ a:hover {
 	;
 }
 
-article .date {
+.date {
 	max-width: 600px;
 	margin: 0 auto;
 	text-transform: uppercase;
@@ -125,6 +125,19 @@ footer {
 main {
     max-width: 600px;
     margin: 0 auto;;
+}
+
+main h2 {
+	margin: 0;
+}
+
+main p {
+	line-height: 1.5;
+	margin-bottom: 50px;
+}
+
+main p:last-child {
+	margin-bottom: 0;
 }
 
 @media screen and (max-width: 650px) {

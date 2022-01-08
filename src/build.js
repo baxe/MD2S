@@ -19,7 +19,12 @@ const parse = (name) => {
     const raw = fs.readFileSync(name, 'utf8');
     const parsed = grayMatter(raw);
     const html = marked.parse(parsed.content);
-    return { ...parsed, html }
+    const lexer = marked.lexer(parsed.content);
+    return { ...parsed, html, lexer }
+}
+
+const truncate = (content) => {
+    return (content.length > 250) ? content.substr(0, 250) + '…' : content;
 }
 
 const createPost = (source,  data) => {
@@ -34,7 +39,8 @@ const processPost = (name, template) => {
     const built = createPost(template, { title: file.data.title, time: date, slug: file.data.slug, content: file.html });
     fs.writeFileSync(path.resolve("public", "posts") + "/" + outFile, built)
 
-    posts.push({ title: file.data.title, slug: file.data.slug, description: file.data.description, time: new Date(file.data.time) })
+    const description = truncate(file.lexer.find(element => element.type == "paragraph").text);
+    posts.push({ title: file.data.title, slug: file.data.slug, description: description, date: date, time: new Date(file.data.time) });
 }
 
 const createIndex = (source, data) => {
