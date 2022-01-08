@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="../assets/styles.css" />
+  </head>
+  <body>
+      <header>
+        <a href="../"> <i class="gg-arrow-left"></i></a>
+      </header>
+    <article class="content">
+      <div class="date">{{time}}</div>
+      {{{content}}}
+    </article>
+
+    <footer>
+        View on <a href="https://github.com/baxe/blog/posts/{[slug}}.md">GitHub</a>.
+        <button onclick="topFunction()" id="toTop" title="To top"><i class="gg-arrow-up"></i></button>
+    </footer>
+
+    <script src="../assets/highlight.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", (event) => {
+            document.querySelectorAll("pre code").forEach((el) => {
+                hljs.highlightElement(el);
+            });
+        });
+
+        // W3S lol
+        toTopBtn = document.getElementById("toTop");
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                toTopBtn.style.display = "block";
+            } else {
+                toTopBtn.style.display = "none";
+            }
+        }
+
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+  </body>
+</html>
