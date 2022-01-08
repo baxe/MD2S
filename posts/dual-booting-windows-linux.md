@@ -2,7 +2,6 @@
 title: Experience setting up Windows/Linux dual boot
 slug: dual-booting-windows-linux
 time: 1641665774
-description: My first impressions and experience dual booting Windows and Linux (Pop OS) with general ramble about the annoyances I had.
 ---
 
 # Experience setting up Windows/Linux dual boot

@@ -2,7 +2,6 @@
 title: Hello World
 slug: hello-world
 time: 0
-description: Testing this little thing
 ---
 
 # Hello World
