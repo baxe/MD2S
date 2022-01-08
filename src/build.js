@@ -34,7 +34,7 @@ const processPost = (name, template) => {
     const built = createPost(template, { title: file.data.title, time: date, slug: file.data.slug, content: file.html });
     fs.writeFileSync(path.resolve("public", "posts") + "/" + outFile, built)
 
-    posts.push({ title: file.data.title, slug: file.data.slug, description: file.data.description, time: new Date(file.data.date ) })
+    posts.push({ title: file.data.title, slug: file.data.slug, description: file.data.description, time: new Date(file.data.time) })
 }
 
 const createIndex = (source, data) => {
@@ -57,7 +57,7 @@ const build = () => {
     })
 
     // Sort newest first
-    posts.sort(function(x, y) {
+    posts.sort((x, y) => {
         return y.time - x.time;
     });
 
