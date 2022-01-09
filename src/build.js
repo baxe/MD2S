@@ -36,11 +36,11 @@ const processPost = (name, template) => {
     const file = parse(name);
     const outFile = file.data.slug + ".html";
     const date = new Date(file.data.time * 1000).toLocaleString("en-US", { day: "numeric", month: "short", year: "numeric" });
-    const built = createPost(template, { title: file.data.title, time: date, slug: file.data.slug, content: file.html });
+    const description = truncate(file.lexer.find(element => element.type == "paragraph").text);
+    const built = createPost(template, { title: file.data.title, time: date, slug: file.data.slug, content: file.html, description: description, tags: file.data.tags });
     fs.writeFileSync(path.resolve("public", "posts") + "/" + outFile, built)
 
-    const description = truncate(file.lexer.find(element => element.type == "paragraph").text);
-    posts.push({ title: file.data.title, slug: file.data.slug, description: description, date: date, time: new Date(file.data.time) });
+    posts.push({ title: file.data.title, slug: file.data.slug, description: description, date: date, time: new Date(file.data.time), tags: file.data.tags });
 }
 
 const createIndex = (source, data) => {

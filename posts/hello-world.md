@@ -1,6 +1,7 @@
 ---
 title: Hello World
 slug: hello-world
+tags: hello, world
 time: 0
 ---
 

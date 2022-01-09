@@ -1,6 +1,7 @@
 ---
 title: Experience setting up Windows/Linux dual boot
 slug: dual-booting-windows-linux
+tags: windows, linux, dual boot
 time: 1641665774
 ---
 
