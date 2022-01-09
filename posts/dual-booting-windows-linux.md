@@ -9,13 +9,15 @@ time: 1641665774
 
 Now, I finally decided to get into the world of Linux. Mind, it's not like I felt any particular need to do so. Curiosity got the better of me, and 4 hours of research later I found the distro for me. Little did I know, that these 4 hours were just the begging of the work. Maybe there is something to the notion of "Linux is for those who want to work *on* their OS, not *with*".
 
+**While true, this post is essentially just a filler/readble lorem ipsum.**
+
 ## The Setup
 
 My "workstation" is a 2021 model XPS 9510 with 1TB NVMe storage, 32GB DDR4 3200MHz memory, 11th gen i7 11800H CPU, and a completely unnecessary RTX 3050ti. Bit much? Yes. I got it for a steal though, so here we are.
 
 I landed on Pop_OS! for my distro. Not for the name, I can tell you that much. Asking around in Discord servers I lurk, this was one of the first distro names to pop on my radar. Its "native" support for Nvidia drivers and hybrid GPUs on top of being Ubuntu-based was a good sell for someone who doesn't know what they're doing.
 
- allocated 20GB for root, 1GB for boot, 8GB for swap, and 200GB for home. The information you find on the big internet regarding this is all over the place and I'm certain these allocations are overkill. Another bit of information the internet is inconsistent on is GRUB. I think I narrowed down that "grub bad" is the sentiment, at least in my case. I use [rEFInd](https://www.rodsbooks.com/refind/) as my boot manager.
+I allocated 20GB for root, 1GB for boot, 8GB for swap, and 200GB for home. The information you find on the big internet regarding this is all over the place and I'm certain these allocations are overkill. Another bit of information the internet is inconsistent on is GRUB. I think I narrowed down that "grub bad" is the sentiment, at least in my case. I use [rEFInd](https://www.rodsbooks.com/refind/) as my boot manager.
 
 A small tidbit at the end regarding preparation before I ramble: for creating a bootable USB I used  [Ventoy](https://github.com/ventoy/Ventoy). It's a pretty good solution, and far better than most YouTube videos will suggest.
 
@@ -31,6 +33,6 @@ Next issue(s): really bad screen tearing, sluggish experience, and laggy animati
 
 ## Conclusion
 
-In short, I like it. The experience after getting over the first few hurdles is in general great. It takes a bit more research to get my development environment setup, and installing the various bits and bobs I need is not even close to as straightforward as the Linux cult has led me to believe. However, I'm willing to give it a go for a good while before I reevaluate.
+In short, I like it. The experience after getting over the first few hurdles is in general great. It takes a bit more research to get my development environment setup, and installing the various bits and bobs I need is not even close to being as straightforward as the Linux cult has led me to believe. However, I'm willing to give it a go for a good while before I reevaluate.
 
 Developing on Windows has gotten much better in recent years, but there is just something fresh and principally good about being on Linux.
