@@ -1,10 +1,10 @@
-const fs = require('fs');
+const fs = require("fs");
 const glob = require("glob");
 const grayMatter = require("gray-matter");
 const handlebars = require("handlebars");
 const hljs = require("highlight.js");
 const marked = require("marked");
-const path = require('path');
+const path = require("path");
 
 marked.setOptions({
     highlight: function(code, lang) {
@@ -16,7 +16,7 @@ marked.setOptions({
 let posts = [];
 
 const parse = (name) => {
-    const raw = fs.readFileSync(name, 'utf8');
+    const raw = fs.readFileSync(name, "utf8");
     const parsed = grayMatter(raw);
     const html = marked.parse(parsed.content);
     const lexer = marked.lexer(parsed.content);
@@ -24,7 +24,7 @@ const parse = (name) => {
 }
 
 const truncate = (content) => {
-    return (content.length > 250) ? content.substr(0, 250) + '…' : content;
+    return (content.length > 250) ? content.substr(0, 250) + "…" : content;
 }
 
 const createPost = (source,  data) => {
@@ -34,13 +34,26 @@ const createPost = (source,  data) => {
 
 const processPost = (name, template) => {
     const file = parse(name);
-    const outFile = file.data.slug + ".html";
     const date = new Date(file.data.time * 1000).toLocaleString("en-US", { day: "numeric", month: "short", year: "numeric" });
     const description = truncate(file.lexer.find(element => element.type == "paragraph").text);
-    const built = createPost(template, { title: file.data.title, time: date, slug: file.data.slug, content: file.html, description: description, tags: file.data.tags });
-    fs.writeFileSync(path.resolve("public", "posts") + "/" + outFile, built)
 
-    posts.push({ title: file.data.title, slug: file.data.slug, description: description, date: date, time: new Date(file.data.time), tags: file.data.tags });
+    const built = createPost(template, { 
+        title: file.data.title, 
+        date: date, 
+        slug: file.data.slug, 
+        content: file.html, 
+        description: description, 
+        tags: file.data.tags 
+    });
+    fs.writeFileSync(path.resolve("public", "posts") + `/${file.data.slug}.html`, built)
+
+    posts.push({ 
+        title: file.data.title, 
+        slug: file.data.slug, 
+        description: description, 
+        date: date, 
+        time: new Date(file.data.time) // for sort
+    });
 }
 
 const createIndex = (source, data) => {
@@ -49,9 +62,8 @@ const createIndex = (source, data) => {
 }
 
 const processIndex = (template) => {
-    const outFile = "index.html";
     const built = createIndex(template, { posts: posts });
-    fs.writeFileSync(path.resolve("public") + "/" + outFile, built);
+    fs.writeFileSync(path.resolve("public/index.html"), built);
 }
 
 const build = () => {
