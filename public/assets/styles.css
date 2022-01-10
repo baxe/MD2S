@@ -10,7 +10,7 @@ html {
 body {
 	background-color: #fff;
 	font-family: 'Nunito', sans-serif;
-    font-size: 16px;
+	font-size: 16px;
 }
 
 header {
@@ -43,7 +43,6 @@ a {
 
 a:hover {
 	text-decoration: underline;
-	;
 }
 
 .date {
