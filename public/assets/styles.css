@@ -91,7 +91,7 @@ pre code {
 }
 
 code {
-    font-size: 14px;
+	font-size: 14px;
 }
 
 footer {
@@ -122,8 +122,8 @@ footer {
 }
 
 main {
-    max-width: 600px;
-    margin: 0 auto;;
+	max-width: 600px;
+	margin: 0 auto;;
 }
 
 main h2 {
@@ -154,7 +154,7 @@ main p:last-child {
 	footer {
 		margin: 10px auto;
 	}
-    main {
+	main {
 		padding: 0 40px;
     }
 }
