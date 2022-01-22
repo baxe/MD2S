@@ -16,10 +16,10 @@ marked.setOptions({
 const posts = [];
 
 function parse(name) {
-  const raw = fs.readFileSync(name, "utf8");
-  const parsed = grayMatter(raw);
-  const html = marked.parse(parsed.content);
-  const lexer = marked.lexer(parsed.content);
+  let raw = fs.readFileSync(name, "utf8");
+  let parsed = grayMatter(raw);
+  let html = marked.parse(parsed.content);
+  let lexer = marked.lexer(parsed.content);
   return { ...parsed, html, lexer };
 };
 
