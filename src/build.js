@@ -13,9 +13,9 @@ marked.setOptions({
 });
 
 // Array of posts for index
-let posts = [];
+const posts = [];
 
-const parse = (name) => {
+function parse(name) {
   const raw = fs.readFileSync(name, "utf8");
   const parsed = grayMatter(raw);
   const html = marked.parse(parsed.content);
@@ -23,27 +23,27 @@ const parse = (name) => {
   return { ...parsed, html, lexer };
 };
 
-const truncate = (content) => {
+function truncate(content) {
   return content.length > 250 ? content.substr(0, 250) + "…" : content;
 };
 
-const createPost = (source, data) => {
-  const template = handlebars.compile(source);
+function createPost(source, data) {
+  let template = handlebars.compile(source);
   return template(data);
 };
 
-const processPost = (name, template) => {
-  const file = parse(name);
-  const date = new Date(file.data.time * 1000).toLocaleString("en-US", {
+function processPost(name, template) {
+  let file = parse(name);
+  let date = new Date(file.data.time * 1000).toLocaleString("en-US", {
     day: "numeric",
     month: "short",
     year: "numeric",
   });
-  const description = truncate(
+  let description = truncate(
     file.lexer.find((element) => element.type == "paragraph").text
   );
 
-  const built = createPost(template, {
+  let built = createPost(template, {
     title: file.data.title,
     date: date,
     slug: file.data.slug,
@@ -65,21 +65,21 @@ const processPost = (name, template) => {
   });
 };
 
-const createIndex = (source, data) => {
-  const template = handlebars.compile(source);
+function createIndex(source, data) {
+  let template = handlebars.compile(source);
   return template(data);
 };
 
-const processIndex = (template) => {
-  const built = createIndex(template, { posts: posts });
+function processIndex(template) {
+  let built = createIndex(template, { posts: posts });
   fs.writeFileSync(path.resolve("public/index.html"), built);
 };
 
-const build = () => {
-  const postTemplate = fs
+function build() {
+  let postTemplate = fs
     .readFileSync(path.resolve("template/post.html"))
     .toString();
-  const files = glob.sync(path.resolve("posts") + "/**/*.md");
+  let files = glob.sync(path.resolve("posts") + "/**/*.md");
 
   files.forEach((file) => {
     processPost(file, postTemplate);
@@ -90,7 +90,7 @@ const build = () => {
     return y.time - x.time;
   });
 
-  const indexTemplate = fs
+  let indexTemplate = fs
     .readFileSync(path.resolve("template/index.html"))
     .toString();
   processIndex(indexTemplate);
