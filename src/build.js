@@ -16,10 +16,10 @@ marked.setOptions({
 const posts = [];
 
 function parse(name) {
-  let raw = fs.readFileSync(name, "utf8");
-  let parsed = grayMatter(raw);
-  let html = marked.parse(parsed.content);
-  let lexer = marked.lexer(parsed.content);
+  const raw = fs.readFileSync(name, "utf8");
+  const parsed = grayMatter(raw);
+  const html = marked.parse(parsed.content);
+  const lexer = marked.lexer(parsed.content);
   return { ...parsed, html, lexer };
 };
 
@@ -28,22 +28,22 @@ function truncate(content) {
 };
 
 function createPost(source, data) {
-  let template = handlebars.compile(source);
+  const template = handlebars.compile(source);
   return template(data);
 };
 
 function processPost(name, template) {
-  let file = parse(name);
-  let date = new Date(file.data.time * 1000).toLocaleString("en-US", {
+  const file = parse(name);
+  const date = new Date(file.data.time * 1000).toLocaleString("en-US", {
     day: "numeric",
     month: "short",
     year: "numeric",
   });
-  let description = truncate(
+  const description = truncate(
     file.lexer.find((element) => element.type == "paragraph").text
   );
 
-  let built = createPost(template, {
+  const built = createPost(template, {
     title: file.data.title,
     date: date,
     slug: file.data.slug,
@@ -66,20 +66,20 @@ function processPost(name, template) {
 };
 
 function createIndex(source, data) {
-  let template = handlebars.compile(source);
+  const template = handlebars.compile(source);
   return template(data);
 };
 
 function processIndex(template) {
-  let built = createIndex(template, { posts: posts });
+  const built = createIndex(template, { posts: posts });
   fs.writeFileSync(path.resolve("public/index.html"), built);
 };
 
 function build() {
-  let postTemplate = fs
+  const postTemplate = fs
     .readFileSync(path.resolve("template/post.html"))
     .toString();
-  let files = glob.sync(path.resolve("posts") + "/**/*.md");
+  const files = glob.sync(path.resolve("posts") + "/**/*.md");
 
   files.forEach((file) => {
     processPost(file, postTemplate);
@@ -90,7 +90,7 @@ function build() {
     return y.time - x.time;
   });
 
-  let indexTemplate = fs
+  const indexTemplate = fs
     .readFileSync(path.resolve("template/index.html"))
     .toString();
   processIndex(indexTemplate);
