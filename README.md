@@ -1,4 +1,4 @@
-# Blog
+# MD2S
 
 Random attempt at converting markdown posts into html for a static "blog". It's p bad, but it works for my small little ramblings. A bit unconventional to build into public dir perhaps, but hey ho. 
 
