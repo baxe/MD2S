@@ -1,12 +1,12 @@
 {
-  "name": "blog",
+  "name": "MD2S",
   "version": "0.1.0",
   "main": "src/build.js",
   "scripts": {
     "start": "node ./src/build.js"
   },
   "author": "baxe",
-  "license": "MIT",
+  "license": "WTFPL",
   "dependencies": {
     "glob": "^7.2.0",
     "gray-matter": "^4.0.3",
